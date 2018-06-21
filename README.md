@@ -20,6 +20,9 @@ Vue development package for developing large projects based on asynchronous load
 6. webpack 模块化架构工具
 7. gulp 代码检测及压缩、打码构建工具
 
+## 整体框架依赖
+1. node.js版本为 8.9.1 LTS版本及以上；
+
 ## demo库需要注意的事情
 1. 在实际项目开发中需要修改pages/home/Index.vue到自己的业务首页；
 2. 修改路由router/index.ts文件中的Demo.ts去掉；
@@ -112,7 +115,9 @@ Vue development package for developing large projects based on asynchronous load
 ## 项目环境安装与运行
 1. 安装开发库：
  `git clone https://github.com/lensyn-ui/lensyn-ts.git`
-2. 运行项目：
+2. 安装依赖：
+  `npm install`（最好用npm，部分依赖用cnpm有依赖丢失问题）
+3. 运行项目：
  `npm run start`
-3. 打包发布命令：
+4. 打包发布命令：
  `npm run deploy`
