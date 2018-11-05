@@ -65,10 +65,38 @@ let moveInArrayByIndex = (datas: any[], newIndex: number, oldIndex: number): any
     return datas;
 };
 
+/**
+ * 在树形数据中查找对应数据对象
+ */
+let findItemInTree = (item: any, tree: any[], key = 'id') => {
+    let nodes: any[] = [];
+    for (let node of tree) {
+        if (loopTree(node, item, nodes, key)) {
+            nodes.push(node);
+            break;
+        }
+    }
+    return nodes.reverse();
+};
+let loopTree = (list: any, item: any, newList: any[], key: string) => {
+    if (list[key] === item[key]) {
+        return true;
+    }
+    if (list.children && list.children.length > 0) {
+        for (let it of list.children) {
+            if (loopTree(it, item, newList, key)) {
+                newList.push(it);
+                return true;
+            }
+        }
+    }
+    return false;
+};
 
 
 export {
     dateFormat,
     hexToRgba,
-    moveInArrayByIndex
+    moveInArrayByIndex,
+    findItemInTree
 };

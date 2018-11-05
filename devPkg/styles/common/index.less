@@ -10,62 +10,45 @@
   height: 100%;
   margin: 0;
   padding: 0;
-
   > .navigator-container {
     position: fixed;
-    z-index: 9;
+    z-index: 12;
     top: 0;
-    left: 0;
-    width: 100%;
-    height: 36px;
-    line-height: 36px;
-    font-size: 1.5em;
-    background: @bg-hover-primary;
-    &.no-navigator {
-      display: none;
-      width: 0;
-      height: 0;
-      overflow: hidden;
+    right: 0;
+    left: 220px;
+    height: 68px;
+    .transition();
+    &.menu-collapse {
+      left: 66px;
     }
   }
 
   > .menu-container {
     position: fixed;
-    top: 36px;
+    top: 0;
     bottom: 0;
     left: 0;
-    width: 180px;
-    z-index: 5;
-    .transition(width, .2s, linear);
+    width: 220px;
+    z-index: 11;
+    .transition();
     &.menu-collapse {
-      width: 40px;
-    }
-    &.no-menu {
-      display: none;
-      width: 0;
-      height: 0;
-      overflow: hidden;
+      width: 66px;
     }
   }
 
   > .view-container {
     position: fixed;
-    top: 36px;
+    top: 68px;
     right: 0;
     bottom: 0;
-    left: 180px;
-    padding: 15px 20px;
-    z-index: 6;
-    .transition(all, .2s, linear);
+    left: 220px;
+    padding: 5px 15px 15px;
+    z-index: 10;
+    .bg-color(@all-bg-color);
+    .transition();
     overflow-y: auto;
     &.menu-collapse {
-      left: 40px;
-    }
-    &.no-navigator {
-      top: 0;
-    }
-    &.no-menu {
-      left: 0;
+      left: 66px;
     }
   }
 }
@@ -75,229 +58,231 @@
 
 /* 导航样式 ---start--- */
 .navigator-container {
-  >.container {
+  >.box {
+    display: block;
     position: relative;
-    height: 36px;
-    .logo {
+    height: 40px;
+    .bg-color();
+    .shadow(0, 1px, 4px, @white-shadow);
+    .cls-float();
+    >.collapse-btn {
       float: left;
-      width: 180px;
-      height: 36px;
-      color: @bg-color-white;
-      font-size: 1.8rem;
-      .bg-color(#27508d);
-      text-align: center;
+      width: 66px;
+      height: 100%;
+      background: url("../../images/common/collapse.png") center center / 30px 30px no-repeat;
+      .transition();
+      .touch();
     }
-
-    .brand {
-      float: left;
-      .clearfix();
-      > li {
-        float: left;
-        margin: 0 20px;
-        color: #fff;
-
-        &.iconfont {
-          cursor: pointer;
-
-          &.back {
-            .transform(rotate(90deg));
-          }
-
-          &.forward {
-            .transform(rotate(-90deg));
-          }
+    >.sys-opt {
+      display: block;
+      height: 100%;
+      margin-left: 66px;
+      .cls-float();
+      >.item {
+        position: relative;
+        float: right;
+        height: 100%;
+        line-height: 40px;
+        padding: 0 12px;
+        .touch();
+        >i,
+        >span {
+          display: inline-block;
+          vertical-align: middle;
+          height: 100%;
+          text-align: center;
+          .iconfont(24px, @font-color);
+        }
+        >span {
+          text-indent: 5px;
+          font-size: 14px;
+        }
+        >em {
+          position: absolute;
+          right: 0;
+          top: 5px;
+          height: 16px;
+          line-height: 16px;
+          padding: 0 8px;
+          font-size: 12px;
+          text-align: center;
+          font-style: normal;
+          .border-radius(8px);
+          color: @bg-color-white;
+          .bg-color(@bg-button-warning);
         }
       }
     }
-    .nav {
-      margin-right: 20px;
-      text-align: right;
+  }
+  >.nav-tab {
+    display: block;
+    height: 28px;
+    padding: 4px 20px 0;
+    .cls-float();
+    >.item {
+      position: relative;
+      float: left;
+      height: 24px;
+      line-height: 24px;
+      padding: 0 20px;
+      margin-right: 8px;
       font-size: 12px;
-      color: @bg-color-white;
-      > .nav-btn {
-        cursor: pointer;
+      text-align: center;
+      .bg-color();
+      .border-radius();
+      .touch();
+      >span {
+        display: block;
+        height: 24px;
+        color: @font-color-dark;
       }
-      li {
-        display: inline-block;
-
-        & + li {
-          margin-left: 15px;
+      >.state,
+      >.close {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20px;
+        height: 24px;
+        line-height: 26px;
+        .iconfont(12px, @bg-danger-alarm);
+      }
+      >.close {
+        left: auto;
+        right: 0;
+        .opacity(0, 0);
+      }
+      &:hover {
+        >.close {
+          .opacity(1, 100);
+          color: @font-color-dark;
+        }
+      }
+      &.active {
+        >span {
+          color: @bg-button-warning;
+        }
+        >.state {
+          color: @bg-button-warning;
         }
       }
     }
+  }
+  &.menu-collapse >.box >.collapse-btn {
+    .transform(rotate(180deg));
   }
 }
 /* 导航样式 ---end--- */
 
 /* 左侧菜单样式 ---start--- */
 .menu-container {
-  @bg-menu: #41485B;
-  @lineSize: 42px;
-  .bg-color(@bg-menu);
-  &.menu-collapse {
-    > .menu-body {
-      > .container > .block {
-        > .txt {
-          padding-left: 7px;
-          overflow: hidden;
-          color: transparent;
-          &.menu-overview:hover {
-            color: transparent;
-          }
-          &:before {
-            margin: 0 6px;
-          }
-          &.menu-icon {
-            >.icon {
-              margin-left: 2px;
-            }
-          }
-        }
-        > .children > .item > .txt {
-          overflow: hidden;
-          font-size: 16px;
-          text-indent: 7px;
-        }
-      }
+  >.brand {
+    display: block;
+    height: 60px;
+    .bg-color(@menu-brand);
+    .cls-float();
+    .touch();
+    >i {
+      float: left;
+      width: 66px;
+      height: 60px;
+      background: url("../../images/common/brand.png") center center / 40px 40px no-repeat;
     }
-    > .collapse-btn {
-      &:before {
-        .transform(rotate(0deg));
-      }
+    >span {
+      display: block;
+      margin-left: 66px;
+      height: 60px;
+      line-height: 60px;
+      font-size: 20px;
+      color: @bg-color-white;
+      .text-overflow-ellipsis();
     }
   }
-  > .menu-body {
+  >.box {
+    display: block;
     position: absolute;
-    top: 0;
+    top: 60px;
     bottom: 0;
     left: 0;
     width: 100%;
-    .bg-color(@bg-color-dark);
-    .transition();
-    /* 收缩/展开按钮区域 */
-    .menu-header {
-      width: 100%;
-      height: 36px;
-      line-height: 36px;
-      text-align: center;
-      .collapse-icon {
-        display: inline-block;
-        width: 36px;
-        height: 100%;
-        .transition(@time: .3s);
-        background: url("../../images/common/menu.png") center center / 20px 20px no-repeat;
+    .bg-color(@menu-bg);
+    overflow: auto;
+    &::-webkit-scrollbar {
+      width: 0;
+    }
+    .item {
+      position: relative;
+      .item-label {
+        display: block;
+        position: relative;
+        height: 40px;
+        line-height: 40px;
+        text-indent: 28px;
+        color: @menu-font-color;
+        font-size: 12px;
         .touch();
-        &.collapse {
-          .transform(rotate(270deg));
+        .text-overflow-ellipsis();
+        &.child-bg {
+          .bg-color(@menu-child);
+        }
+        &.active {
+          .bg-color(@menu-active);
+        }
+        .item-label-icon,
+        .item-label-expand {
+          display: block;
+          position: absolute;
+          width: 22px;
+          height: 22px;
+          top: 9px;
+          line-height: 22px;
+          text-indent: 0;
+          text-align: center;
+          .transition();
+          .iconfont(16px, @menu-font-color);
+        }
+        .item-label-expand {
+          &.active {
+            .transform(rotate(90deg));
+          }
+        }
+        &:hover {
+          color: @bg-color-white;
+          .item-label-icon,
+          .item-label-expand {
+            color: @bg-color-white;
+          }
+        }
+      }
+      .children-box {
+        height: 0;
+        overflow: hidden;
+        .bg-color(@menu-child);
+        &.active {
+          height: auto;
+          overflow: auto;
         }
       }
     }
-    > .container {
-      display: block;
-      position: absolute;
-      top: 36px;
-      left: 0;
-      width: 100%;
-      overflow-x: hidden;
-      overflow-y: auto;
-      bottom: 0;
-      > .block {
-        display: block;
-        > .txt {
-          display: block;
-          padding-left: 20px;
-          width: 100%;
-          height: @lineSize;
-          line-height: @lineSize;
-          text-align: left;
-          font-size: 14px;
-          color: @bg-color-light;
-          .bg-color(@bg-menu);
-          overflow: hidden;
-          .touch();
-          &:before {
-            position: relative;
-            top: 15px;
-            content: '';
-            float: left;
-            height: @lineSize;
-            width: 20px;
-            margin: 0 15px;
-            .transition();
-          }
-          &.menu-icon {
-            &:before {
-              display: none;
-            }
-            >.icon {
-              display: inline-block;
-              vertical-align: baseline;
-              width: 20px;
-              height: 20px;
-              line-height: 20px;
-              text-align: center;
-              text-indent: 0;
-              margin: 0 8px 0 15px;
-              .iconfont(@color: @bg-color-light);
-            }
-          }
-          &.menu-overview {
-            &:hover {
-              .bg-color(@bg-button-primary);
-              color: @bg-color-white;
-              &:before {
-                .arrow-right(@color: @bg-color-white);
-              }
-            }
-            &:before {
-              .arrow-right(@color: #B3B6BD);
-            }
-          }
-          &.expand {
-            &.menu-overview {
-              &:before {
-                .arrow-bottom(@color: @bg-color-white);
-              }
-
-            }
-          }
+  }
+  &.menu-collapse {
+    >.box {
+      overflow: visible;
+      .item {
+        .collapse-label .item-label-icon {
+          width: 36px;
+          font-size: 20px;
         }
-        > .children {
-          display: block;
-          height: 0px;
-          overflow: hidden;
-          .transition();
-          > .item {
+        .collapse-box {
+          display: none;
+          position: absolute;
+          top: 0;
+          left: 100%;
+          width: 220px;
+          height: auto;
+        }
+        &:hover {
+          .collapse-box {
             display: block;
-            > .txt {
-              display: block;
-              height: @lineSize;
-              line-height: @lineSize;
-              text-indent: 50px;
-              font-size: 14px;
-              color: @bg-color-light;
-              .bg-color(@bg-color-dark);
-              .touch();
-              &.active {
-                color: @bg-color-white;
-                .bg-color(@bg-button-primary);
-              }
-              &:hover {
-                color: @bg-color-white;
-                .bg-color(@bg-disable-primary);
-              }
-              >.icon {
-                display: inline-block;
-                vertical-align: middle;
-                width: 20px;
-                height: 20px;
-                line-height: 20px;
-                text-align: center;
-                text-indent: 0;
-                margin-right: 10px;
-                .iconfont(@size: 18px,@color: @bg-color-light);
-              }
-            }
           }
         }
       }

@@ -14,8 +14,9 @@
 
         /* 处理Ajax请求失败的方法 */
         protected handleRequestError(error: any): void {
+            this.$lensyn.loading.hide();
             if (this.isLoginExpired(error)) {
-                this.showRequestErrorMsg("登陆失效，请重新登陆");
+                this.showRequestErrorMsg("登录失效，请重新登录");
                 setTimeout(() => {
                     this.$router.push({name: "Login"});
                 }, 2000);

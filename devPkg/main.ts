@@ -29,7 +29,7 @@ import router from './router';
 /* 引入容器页面 */
 import Index from "./pages/Index.vue";
 
-/* 加载全局组件 */
+/* 加载全局过滤器/指令 */
 import GlobalComponent from "./components/lensyn-global";
 Vue.use(GlobalComponent);
 
@@ -37,6 +37,10 @@ Vue.use(GlobalComponent);
 import "lensyn-ui/lib/lensyn-ui.css";
 import LensynUI from "lensyn-ui";
 Vue.use(LensynUI);
+
+/* 向组件库添加输入框校验规则 */
+import validator from "./util/validate";
+validator(LensynUI);
 
 /* 引入页面样式文件 */
 import './styles/main.less';

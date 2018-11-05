@@ -1,62 +1,41 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 
-<head>
-    <!--设置字符集-->
-    <meta charset="utf-8">
-    <title>lensyn-ts</title>
-    <!--设置页面初始化缩放和宽度-->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!--设置关键字、描述-->
-    <meta name="Keywords" content="能信, lensyn，ts" />
-    <meta name="Description" content="lensyn-ts" />
-    <!--设置启用最新浏览器-->
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
-    <meta name="renderer" content="webkit">
-    <!--解除网络数字电话链接-->
-    <meta name="format-detection" content="telephone=no">
-    <!--为了做到网页缓存，取消缓存头文件，每次发包修改JS文件版本HASH-->
-    <meta http-equiv="pragma" content="no-cache">
-    <meta http-equiv="cache-control" content="no-cache">
-    <meta http-equiv="expires" content="0">
-    <!--设置页面title图片和偏好图片-->
-    <link rel="icon" sizes="any" mask="" href="./static/favicon.ico">
-    <!-- build:css ./assets-index.min.css -->
-    <link rel="stylesheet" href="./static/assets/font.css" >
-    <link rel="stylesheet" href="./static/style/main.css">
-    <script>
-        /* 添加console在IE9下的支持，仅重写了常用的warn，log，error，assert，debug，info */
-        if(!window.console) {
-            window.console = {
-                warn: function() {
-                    // 提示信息
-                },
-                log: function() {
-                    // 提示信息
-                },
-                error: function() {
-                    // 提示信息
-                },
-                assert: function() {
-                    // 提示信息
-                },
-                debug: function() {
-                    // 提示信息
-                },
-                info: function() {
-                    // 提示信息
-                }
-            };
-        }
-    </script>
-    <!-- /build -->
-</head>
+    <head>
+        <!--设置字符集-->
+        <meta charset="utf-8">
+        <title>Data Driven Documents</title>
+        <!--设置页面初始化缩放和宽度-->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!--设置关键字、描述-->
+        <meta name="Keywords" content="能信, lensyn，ts" />
+        <meta name="Description" content="lensyn-ts" />
+        <!--设置启用最新浏览器-->
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+        <meta name="renderer" content="webkit">
+        <!--解除网络数字电话链接-->
+        <meta name="format-detection" content="telephone=no">
+        <!--为了做到网页缓存，取消缓存头文件，每次发包修改JS文件版本HASH-->
+        <meta http-equiv="pragma" content="no-cache">
+        <meta http-equiv="cache-control" content="no-cache">
+        <meta http-equiv="expires" content="0">
+        <!--设置页面title图片和偏好图片-->
+        <link rel="icon" sizes="any" mask="" href="./static/favicon.ico">
+        <!-- build:js ./assets-export.min.js -->
+        <script type="text/javascript" src="./static/assets/javascript/console.js"></script>
+        <script type="text/javascript" src="./static/assets/javascript/d3.js"></script>
+        <!-- build -->
+        <!-- build:css ./assets-index.min.css -->
+        <link rel="stylesheet" href="./static/assets/font.css" >
+        <link rel="stylesheet" href="./static/style/main.css">
+        <!-- /build -->
+    </head>
 
-<body>
-    <!--页面主要内容区域-->
-    <div id="mainContent"></div>
-    <!--也要入口js文件-->
-    <script src="./static/all.min.js?rev=@@hash"></script>
-</body>
+    <body>
+        <!--页面主要内容区域-->
+        <div id="mainContent"></div>
+        <!--也要入口js文件-->
+        <script src="./static/all.min.js?rev=@@hash"></script>
+    </body>
 
 </html>

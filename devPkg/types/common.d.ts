@@ -7,6 +7,7 @@
 interface UserInfo {
     id: string;
     name?: string;
+    cb?: (d: any) => void;
 }
 
 /* 接口请求参数 */
@@ -16,8 +17,8 @@ interface RequestData {
     data?: object;
     params?: object;
     contentType?: string;
+    urlParam?: any;
 }
-
 
 /* 接口请求返回类型定义 */
 type SuccessCallback = (data: any) => void;

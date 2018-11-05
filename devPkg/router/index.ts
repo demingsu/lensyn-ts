@@ -5,13 +5,12 @@
 
 import Vue from "vue";
 import Router, { Route } from "vue-router";
-import LoginAjax from "../api/login";
 import { Menu as MenuData } from "../config";
 
 /* 导入各个子模块路由 */
 import Login from "./Login";
 import Home from "./Home";
-import Demo from "./Demo";
+import Chapter from './Chapter';
 
 /* 注入路由 */
 Vue.use(Router);
@@ -21,7 +20,7 @@ const router = new Router({routes: [
     { path: "/", redirect: "/Login" },
     ...Login,
     ...Home,
-    ...Demo
+    ...Chapter
 ]});
 
 /* 判断是否已经登录 */
@@ -37,12 +36,6 @@ let hasGetMenu = (): boolean => {
 /* 获取menu菜单 */
 let getUserMenu = (cb: (isSuccess: boolean, data?: any) => void): void => {
     cb(true, MenuData);
-    /* todo 根据项目定
-    LoginAjax.getMenu((d: any) => {
-        cb(true, d.data);
-    }, (e: any) => {
-        cb(false);
-    });*/
 };
 
 /* 重定向路由 */

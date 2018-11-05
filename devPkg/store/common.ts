@@ -11,7 +11,7 @@ interface CommonInfo {
 }
 
 const initState: CommonInfo = {
-    userInfo: undefined,
+    userInfo: undefined
 };
 
 const getters: GetterTree<any, any> = {
@@ -23,6 +23,7 @@ const getters: GetterTree<any, any> = {
 };
 
 const actions: ActionTree<any, any> = {
+    /* 设置用户信息 */
     setUserInfo({commit}, obj: UserInfo): any {
         commit('mutationUserInfo', obj);
     }
